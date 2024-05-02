@@ -2,6 +2,7 @@
 
 | Componentes podem ser criados como funções ou classes.
 
+```
 function component() {
     return (
         <div>
@@ -17,3 +18,4 @@ class MeuComponente extends Component {
         </div>
     }
 }
+```

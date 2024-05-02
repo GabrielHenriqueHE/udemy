@@ -1,22 +1,21 @@
-# states com arrays e objetos
+# lifecycle methods - parte 1
 
-| Para fazer a iteração de arrays e objetos em um componente, é preciso informar no elemento root uma key para iteração.
+Lifecycle methods são métodos que reconhecem quando algumas ações acontecem com os componentes.
 
-render() {
-    const { posts } = this.state
-    
-    return (
-      <div className='App'>
-        {posts.map(post => {
-          return (
-            <div key={post.id}>
-              <h1>{post.title}</h1>
-              <p>{post.content}</p>
-            </div>
-          )
-        })}
-      </div>
-    )
-}
+```
+componentDidMount() {
+  // Executa as operações assim que o componente é montado na tela
+    this.handleTimeout()
+  }
 
-| Dessa forma, não existirá a duplicidade de elementos durante a iteração do array.
+  componentDidUpdate() {
+    // Executa as operações assim que o componente é atualizado
+    this.handleTimeout()
+  }
+
+  componentWillUnmount() {
+    // Executa as operações assim que o componente será desmontado da tela
+    clearTimeout(this.timeoutUpdate)
+  }
+
+```

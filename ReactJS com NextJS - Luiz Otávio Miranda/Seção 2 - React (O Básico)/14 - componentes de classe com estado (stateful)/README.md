@@ -2,6 +2,7 @@
 
 | Componentes stateful devem ser implementados como classe, enquanto componentes stateless podem ser implementados como função ou classe.
 
+```
 class App extends Component {
   state = {
     name: "Gabriel Henrique",
@@ -26,6 +27,7 @@ class App extends Component {
     )
   }
 }
+```
 
 | Os métodos em componentes como classe não tem acesso ao this. Para resolver isso, pode ser feito um bind para o método usando: this.metodo = this.metodo.bind(this).
 
