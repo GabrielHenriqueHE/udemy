@@ -1,5 +1,6 @@
 import './index.css'
 import { Component } from 'react'
+import { PostCard } from './components/PostCard'
 
 class App extends Component {
 
@@ -33,11 +34,13 @@ class App extends Component {
     return (
       <div className='grid grid-cols-3 px-2 py-2 gap-2'>
         {posts.map(post => (
-          <div key={post.id} className='flex flex-col gap-1.5 items-start bg-gray-400/80 hover:bg-gray-400 hover:cursor-pointer rounded-md shadow-md transition-all'>
-            <img src={post.cover} alt={post.title}/>
-            <h1 className='font-semibold text-ellipsis text-xl px-2'>{post.title}</h1>
-            <p className='font-thin text-ellipsis px-2 py-1'>{post.body}</p>
-          </div>
+          <PostCard 
+            key={post.id}
+            cover={post.cover}
+            id={post.id}
+            title={post.title}
+            body={post.body}
+          />
         ))}
       </div>
     )

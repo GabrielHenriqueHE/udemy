@@ -1,9 +1,6 @@
 # props e organização dos componentes
 
-Um dos princípios básicos do React é a desestruturação de componentes, onde componentes menores compõem outros, que por fim servem para renderizar uma página inteira.
-
 Props são as propriedades definidas para os componentes. Através delas, é possível acessar os dados fornecidos e exibi-los na renderização de cada um dos componentes.
-
 
 ```
 /*
