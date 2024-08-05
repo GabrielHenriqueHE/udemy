@@ -1,6 +1,6 @@
-package composicao.desafio.domain.entities;
+package desafio1.domain.entities;
 
-import composicao.desafio.domain.entities.enums.WorkerLevel;
+import desafio1.domain.entities.enums.WorkerLevel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package composicao.desafio;
+package desafio1;
 
-import composicao.desafio.domain.entities.Contract;
-import composicao.desafio.domain.entities.Department;
-import composicao.desafio.domain.entities.Worker;
-import composicao.desafio.domain.entities.enums.WorkerLevel;
+import desafio1.domain.entities.Contract;
+import desafio1.domain.entities.Department;
+import desafio1.domain.entities.Worker;
+import desafio1.domain.entities.enums.WorkerLevel;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

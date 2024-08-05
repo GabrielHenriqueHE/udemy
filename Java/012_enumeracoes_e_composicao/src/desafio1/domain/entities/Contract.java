@@ -1,4 +1,4 @@
-package composicao.desafio.domain.entities;
+package desafio1.domain.entities;
 
 
 import java.time.LocalDateTime;

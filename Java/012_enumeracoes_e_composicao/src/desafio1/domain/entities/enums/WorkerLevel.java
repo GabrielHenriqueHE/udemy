@@ -1,4 +1,4 @@
-package composicao.desafio.domain.entities.enums;
+package desafio1.domain.entities.enums;
 
 public enum WorkerLevel {
     JUNIOR,
