@@ -2,11 +2,7 @@ package application;
 
 import db.DB;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 
 public class Main {
@@ -17,31 +13,24 @@ public class Main {
 
         try {
             connection = DB.getConnection();
-            st = connection.prepareStatement(
-                    "INSERT INTO seller" +
-                        "(Name, Email, BirthDate, BaseSalary, DepartmentId)" +
-                        "VALUES (?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS
-            );
+            st = connection.prepareStatement("UPDATE seller SET BaseSalary = BaseSalary + ? WHERE (DepartmentId = ?)", Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1, "Carl Purple");
-            st.setString(2, "carl@gmail.com");
-            st.setDate(3, new java.sql.Date(sdf.parse("22/04/1985").getTime()));
-            st.setDouble(4, 3000.00);
-            st.setInt(5, 4);
+            st.setDouble(1, 200.00);
+            st.setInt(2, 2);
 
-            int rowsAffected = st.executeUpdate();
+            int affectedRows = st.executeUpdate();
 
-            if (rowsAffected > 0) {
+            if (affectedRows > 0) {
+                System.out.println("Done! Rows affected: " + affectedRows);
                 ResultSet rs = st.getGeneratedKeys();
                 while (rs.next()) {
-                    int id = rs.getInt(1);
-                    System.out.println("Done! ID = " + id);
+                    System.out.println(rs.getInt(1));
                 }
             } else {
                 System.out.println("No rows affected.");
             }
 
-        } catch (SQLException | ParseException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DB.closeConnection();
