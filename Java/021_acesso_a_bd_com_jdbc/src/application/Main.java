@@ -1,6 +1,7 @@
 package application;
 
 import db.DB;
+import db.DbException;
 import db.DbIntegrityException;
 
 import java.sql.*;
@@ -10,24 +11,34 @@ public class Main {
     public static void main(String[] args) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Connection connection = null;
-        PreparedStatement st = null;
+        Statement st = null;
 
         try {
 
             connection = DB.getConnection();
-            st = connection.prepareStatement("DELETE FROM department WHERE (Id = ?)");
-            st.setInt(1, 6);
+            connection.setAutoCommit(false);
+            st = connection.createStatement();
 
-            int affectedRows = st.executeUpdate();
+            int rows1 = st.executeUpdate("UPDATE seller SET BaseSalary = 2090 WHERE DepartmentId = 1");
+            int rows2 = st.executeUpdate("UPDATE seller SET BaseSalary = 3090 WHERE DepartmentId = 2");
+            System.out.println("Rows 1 = " + rows1);
 
-            if (affectedRows > 0) {
-                System.out.println("Done! Rows affected: " + affectedRows);
-            } else {
-                System.out.println("No rows affected.");
-            }
+            int x = 1;
+//            if (x < 2) {
+//                throw new SQLException("Fake error");
+//            }
+
+            System.out.println("Rows 2 = " + rows2);
+
+            connection.commit();
 
         } catch (SQLException e) {
-            throw new DbIntegrityException(e.getMessage());
+            try {
+                connection.rollback();
+                throw new DbException("Transaction rolled back! Caused by " + e.getMessage());
+            } catch (SQLException e1) {
+                throw new DbException("Error trying to rollback! Caused by " + e1.getMessage());
+            }
             // Exception in thread "main" db.DbIntegrityException:
             // Cannot delete or update a parent row: a foreign key constraint fails
             // (`coursejdbc`.`seller`, CONSTRAINT `seller_ibfk_1`
