@@ -13,9 +13,13 @@ public class Main {
         PreparedStatement st = null;
 
         try {
+
             connection = DB.getConnection();
-            st = connection.prepareStatement("DELETE FROM department WHERE (Id = ?)");
-            st.setInt(1, 5);
+            //st = connection.prepareStatement("DELETE FROM department WHERE (Id = ?)");
+            //st.setInt(1, 5);
+            st = connection.prepareStatement("UPDATE seller SET BaseSalary = BaseSalary + ? WHERE (DepartmentId = ?)", Statement.RETURN_GENERATED_KEYS);
+            st.setDouble(1, 200.00);
+            st.setInt(2, 2);
 
             int affectedRows = st.executeUpdate();
 
